@@ -96,6 +96,7 @@ class _ButtonState extends State<Button> {
         print("onTapdown");
         onPressed(true);
       },
+      onTapCancel: () => onPressed(false),
       child: Container(
         width: widget.width,
         decoration: BoxDecoration(
