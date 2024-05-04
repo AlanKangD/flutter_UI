@@ -16,6 +16,7 @@ class ShoppingView extends StatelessWidget {
           // 설정 버튼
           Button(
             icon: 'option',
+            type: ButtonType.flat,
             onPressed: () {},
           )
         ],
