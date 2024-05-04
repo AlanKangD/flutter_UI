@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:house_of_tomorrow/src/service/theme_service.dart';
+import 'package:house_of_tomorrow/theme/component/asset_icon.dart';
 
 part 'button_size.dart';
 part 'button_type.dart';
@@ -75,8 +76,59 @@ class _ButtonState extends State<Button> {
         widget.borderColor,
       );
 
+  // 버튼 클릭 이벤트
+  void onPressed(bool newIsPressed) {
+    if (isPressed == newIsPressed) return;
+    setState(() {
+      isPressed = newIsPressed;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return GestureDetector(
+      // Click event
+      onTapUp: (details) {
+        print("onTapUp");
+        onPressed(false);
+      },
+      onTapDown: (details) {
+        print("onTapdown");
+        onPressed(true);
+      },
+      child: Container(
+        width: widget.width,
+        decoration: BoxDecoration(
+          color: backgroundColor,
+          borderRadius: BorderRadius.circular(8),
+          border: border,
+        ),
+        padding: EdgeInsets.all(widget.size.padding),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            // incon
+            if (widget.icon != null)
+              AssetIcon(
+                widget.icon!,
+                color: color,
+              ),
+            // Gap
+            if (widget.icon != null && widget.text != null)
+              const SizedBox(width: 8),
+            // Text
+            if (widget.text != null)
+              Text(
+                widget.text!,
+                style: widget.size.getTextStyle(context).copyWith(
+                      color: color,
+                      fontWeight: context.typo.semiBold,
+                    ),
+              )
+          ],
+        ),
+      ),
+    );
   }
 }
