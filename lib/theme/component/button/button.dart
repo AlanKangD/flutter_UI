@@ -89,15 +89,17 @@ class _ButtonState extends State<Button> {
     return GestureDetector(
       // Click event
       onTapUp: (details) {
-        print("onTapUp");
         onPressed(false);
+        if (!widget.isInactive) {
+          widget.onPressed();
+        }
       },
-      onTapDown: (details) {
-        print("onTapdown");
-        onPressed(true);
-      },
+      onTapDown: (details) => onPressed(true),
       onTapCancel: () => onPressed(false),
-      child: Container(
+
+      // Container
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 100),
         width: widget.width,
         decoration: BoxDecoration(
           color: backgroundColor,
