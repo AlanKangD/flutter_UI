@@ -4,8 +4,22 @@ import 'package:house_of_tomorrow/src/service/theme_service.dart';
 part 'button_size.dart';
 part 'button_type.dart';
 
-class Button extends StatelessWidget {
-  const Button({super.key});
+class Button extends StatefulWidget {
+  const Button({
+    super.key,
+    required this.onPressed,
+    ButtonType? type,
+    ButtonSize? size,
+    bool? isInactive,
+    this.text,
+    this.icon,
+    this.width,
+    this.color,
+    this.backgroundColor,
+    this.borderColor,
+  })  : type = type ?? ButtonType.fill,
+        size = size ?? ButtonSize.medium,
+        isInactive = isInactive ?? false;
 
   //클릭 이벤트
   final void Function() onPressed;
@@ -28,6 +42,38 @@ class Button extends StatelessWidget {
   final Color? color;
   final Color? backgroundColor;
   final Color? borderColor;
+
+  @override
+  State<Button> createState() => _ButtonState();
+}
+
+class _ButtonState extends State<Button> {
+  //버튼이 눌려있는지 여부
+  bool isPressed = false;
+
+  // 비활성화 여부
+  bool get isInactive => isPressed || widget.isInactive;
+
+  // Text & Icon color
+  Color get color => widget.type.getColor(
+        context,
+        isInactive,
+        widget.color,
+      );
+
+  // Background Color
+  Color get backgroundColor => widget.type.getBackgroundColor(
+        context,
+        isInactive,
+        widget.backgroundColor,
+      );
+
+  // Border
+  Border? get border => widget.type.getBorder(
+        context,
+        isInactive,
+        widget.borderColor,
+      );
 
   @override
   Widget build(BuildContext context) {
