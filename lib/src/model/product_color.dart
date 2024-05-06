@@ -11,7 +11,7 @@ class ProductColor {
 
   factory ProductColor.fromJson(Map<String, dynamic> json) {
     return ProductColor(
-      iamgeUrl: json['iamgeUrl'] ?? '',
+      iamgeUrl: json['imageUrl'] ?? '',
       color: Color(int.tryParse(json['hexColor']) ?? 0xFF000000),
     );
   }
