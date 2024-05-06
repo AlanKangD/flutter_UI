@@ -3,7 +3,8 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:house_of_tomorrow/src/model/product.dart';
-import 'package:house_of_tomorrow/src/view/shopping/widget/product_card.dart';
+import 'package:house_of_tomorrow/src/view/shopping/widget/product_card_grid.dart';
+import 'package:house_of_tomorrow/src/view/shopping/widget/product_empty.dart';
 import 'package:house_of_tomorrow/theme/component/bottom_sheet/setting_bottom_sheet.dart';
 import 'package:house_of_tomorrow/theme/component/button/button.dart';
 import 'package:house_of_tomorrow/theme/component/input_field.dart';
@@ -33,6 +34,13 @@ class _ShoppingViewState extends State<ShoppingView> {
     } catch (e, s) {
       log('Failed to searchProductList', error: e, stackTrace: s);
     }
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    searchProductList();
   }
 
   @override
@@ -85,7 +93,11 @@ class _ShoppingViewState extends State<ShoppingView> {
             ),
 
             // ProductCardList
-            if (productList.isNotEmpty) ProductCard(product: productList[0]),
+            Expanded(
+              child: productList.isEmpty
+                  ? const ProductEmpty()
+                  : ProductCardGrid(productList),
+            ),
           ],
         ));
   }
