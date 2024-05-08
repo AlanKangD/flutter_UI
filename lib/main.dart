@@ -4,6 +4,7 @@ import 'package:house_of_tomorrow/src/service/lang_serivce.dart';
 import 'package:house_of_tomorrow/src/service/theme_service.dart';
 import 'package:house_of_tomorrow/src/view/shopping/shopping_view.dart';
 import 'package:house_of_tomorrow/util/lang/generated/l10n.dart';
+import 'package:house_of_tomorrow/util/route_path.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -36,7 +37,8 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       locale: context.watch<LangService>().locale,
       theme: context.themeService.themeData,
-      home: const ShoppingView(),
+      initialRoute: RoutePath.shopping,
+      onGenerateRoute: RoutePath.onGenerateRoute,
     );
   }
 }
