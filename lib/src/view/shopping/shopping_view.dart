@@ -21,6 +21,12 @@ class ShoppingView extends StatefulWidget {
 class _ShoppingViewState extends State<ShoppingView> {
   List<Product> productList = [];
 
+
+  TextEditingController textcontroller = TextEditingController();
+
+  String get keywword => textcontroller.text.trim();
+
+
   Future<void> searchProductList() async {
     try {
       final res = await NetworkHelper.dio.get(
