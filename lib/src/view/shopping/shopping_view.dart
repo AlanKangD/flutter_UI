@@ -82,6 +82,9 @@ class _ShoppingViewState extends State<ShoppingView> {
                   // 검색
                   Expanded(
                     child: InputField(
+                      controller: textcontroller,
+                      onClear: searchProductList,
+                      onSubmitted: (text) => searchProductList(),
                       hint: S.current.searchProduct,
                     ),
                   ),
