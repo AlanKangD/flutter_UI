@@ -14,6 +14,15 @@ class ColorPicker extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Row(
+      children: colorList.asMap().entries.map((entry) {
+        int index = entry.key;
+        Color color = entry.value;
+        return CircleAvatar(
+          backgroundColor: color,
+          radius: 20,
+        );
+      }).toList(),
+    );
   }
 }
