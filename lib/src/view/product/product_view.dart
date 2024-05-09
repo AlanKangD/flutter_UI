@@ -47,6 +47,7 @@ class _ProductViewState extends State<ProductView> {
       ),
       body: Column(
         children: [
+          /// ProductColorPreview
           ProductColorPreview(
             colorIndex: colorIndex,
             product: widget.product,
