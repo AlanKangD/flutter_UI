@@ -17,6 +17,7 @@ class ColorPicker extends StatelessWidget {
   Widget build(BuildContext context) {
     return Wrap(
       spacing: 16,
+      alignment: WrapAlignment.center,
       children: colorList.asMap().entries.map((entry) {
         int index = entry.key;
         Color color = entry.value;
@@ -35,9 +36,14 @@ class ColorPicker extends StatelessWidget {
               borderRadius: BorderRadius.circular(99),
             ),
             padding: EdgeInsets.all(isSelected ? 1 : 4),
-            child: CircleAvatar(
-              backgroundColor: color,
-              radius: 20,
+            child: DecoratedBox(
+              decoration: BoxDecoration(
+                boxShadow: context.deco.shadow,
+              ),
+              child: CircleAvatar(
+                backgroundColor: color,
+                radius: 20,
+              ),
             ),
           ),
         );

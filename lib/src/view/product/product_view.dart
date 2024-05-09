@@ -46,7 +46,9 @@ class _ProductViewState extends State<ProductView> {
         leading: const PopButton(),
         titleSpacing: 0,
       ),
-      body: Column(
+      body: Wrap(
+        runSpacing: 32,
+        alignment: WrapAlignment.center,
         children: [
           /// ProductColorPreview
           ProductColorPreview(
