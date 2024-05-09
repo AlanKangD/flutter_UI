@@ -15,7 +15,8 @@ class ColorPicker extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
+    return Wrap(
+      spacing: 16,
       children: colorList.asMap().entries.map((entry) {
         int index = entry.key;
         Color color = entry.value;
