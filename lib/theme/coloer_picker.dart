@@ -28,7 +28,9 @@ class ColorPicker extends StatelessWidget {
                     width: 3,
                   )
                 : null,
+            borderRadius: BorderRadius.circular(99),
           ),
+          padding: const EdgeInsets.all(1),
           child: CircleAvatar(
             backgroundColor: color,
             radius: 20,
