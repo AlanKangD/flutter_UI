@@ -22,7 +22,8 @@ class ColorPicker extends StatelessWidget {
         bool isSelected = colorIndex == index;
         return GestureDetector(
           onTap: () => onColorSelected(index),
-          child: Container(
+          child: AnimatedContainer(
+            duration: const Duration(milliseconds: 222),
             decoration: BoxDecoration(
               border: isSelected
                   ? Border.all(
