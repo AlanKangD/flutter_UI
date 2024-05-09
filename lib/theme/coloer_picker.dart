@@ -20,20 +20,23 @@ class ColorPicker extends StatelessWidget {
         int index = entry.key;
         Color color = entry.value;
         bool isSelected = colorIndex == index;
-        return Container(
-          decoration: BoxDecoration(
-            border: isSelected
-                ? Border.all(
-                    color: context.color.primary,
-                    width: 3,
-                  )
-                : null,
-            borderRadius: BorderRadius.circular(99),
-          ),
-          padding: const EdgeInsets.all(1),
-          child: CircleAvatar(
-            backgroundColor: color,
-            radius: 20,
+        return GestureDetector(
+          onTap: () => onColorSelected(index),
+          child: Container(
+            decoration: BoxDecoration(
+              border: isSelected
+                  ? Border.all(
+                      color: context.color.primary,
+                      width: 3,
+                    )
+                  : null,
+              borderRadius: BorderRadius.circular(99),
+            ),
+            padding: const EdgeInsets.all(1),
+            child: CircleAvatar(
+              backgroundColor: color,
+              radius: 20,
+            ),
           ),
         );
       }).toList(),
