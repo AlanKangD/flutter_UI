@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:house_of_tomorrow/src/service/theme_service.dart';
 
 class ColorPicker extends StatelessWidget {
   const ColorPicker({
@@ -18,9 +19,20 @@ class ColorPicker extends StatelessWidget {
       children: colorList.asMap().entries.map((entry) {
         int index = entry.key;
         Color color = entry.value;
-        return CircleAvatar(
-          backgroundColor: color,
-          radius: 20,
+        bool isSelected = colorIndex == index;
+        return Container(
+          decoration: BoxDecoration(
+            border: isSelected
+                ? Border.all(
+                    color: context.color.primary,
+                    width: 3,
+                  )
+                : null,
+          ),
+          child: CircleAvatar(
+            backgroundColor: color,
+            radius: 20,
+          ),
         );
       }).toList(),
     );
