@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:house_of_tomorrow/src/model/product.dart';
@@ -28,11 +29,15 @@ class ProductColorPreview extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           /// Image
-          ClipRRect(
-            borderRadius: BorderRadius.circular(24),
-            child: Image.network(
-              product.productColorList[colorIndex].iamgeUrl,
-              fit: BoxFit.cover,
+          AspectRatio(
+            aspectRatio: 1 / 0.8,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(24),
+              child: Image.network(
+                product.productColorList[colorIndex].iamgeUrl,
+                width: double.infinity,
+                fit: BoxFit.cover,
+              ),
             ),
           ),
           const SizedBox(
