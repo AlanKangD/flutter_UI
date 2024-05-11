@@ -23,19 +23,22 @@ class CounterBadge extends StatelessWidget {
 
         /// Badge
         Positioned(
-          top: 10,
+          top: 6,
           right: 6,
-          child: CircleAvatar(
-            backgroundColor: context.color.secondary,
-            radius: isShow ? 10 : 0,
-            child: Text(
-              label,
-              style: context.typo.body2.copyWith(
-                color: context.color.onSecondary,
+          child: IgnorePointer(
+            ignoring: true,
+            child: CircleAvatar(
+              backgroundColor: context.color.secondary,
+              radius: isShow ? 10 : 0,
+              child: Text(
+                label,
+                style: context.typo.body2.copyWith(
+                  color: context.color.onSecondary,
+                ),
               ),
             ),
           ),
-        )
+        ),
       ],
     );
   }
