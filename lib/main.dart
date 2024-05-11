@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:house_of_tomorrow/src/service/cart_service.dart';
 import 'package:house_of_tomorrow/src/service/lang_serivce.dart';
 import 'package:house_of_tomorrow/src/service/theme_service.dart';
 import 'package:house_of_tomorrow/src/view/shopping/shopping_view.dart';
@@ -15,6 +16,9 @@ void main() {
       ),
       ChangeNotifierProvider(
         create: (context) => LangService(),
+      ),
+      ChangeNotifierProvider(
+        create: (context) => CartService(),
       ),
     ],
     child: const MyApp(),
