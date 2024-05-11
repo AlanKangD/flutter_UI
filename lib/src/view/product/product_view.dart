@@ -47,28 +47,31 @@ class _ProductViewState extends State<ProductView> {
         leading: const PopButton(),
         titleSpacing: 0,
       ),
-      body: Wrap(
-        runSpacing: 32,
-        alignment: WrapAlignment.center,
-        children: [
-          /// ProductColorPreview
-          ProductColorPreview(
-            colorIndex: colorIndex,
-            product: widget.product,
-          ),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.symmetric(vertical: 32),
+        child: Wrap(
+          runSpacing: 32,
+          alignment: WrapAlignment.center,
+          children: [
+            /// ProductColorPreview
+            ProductColorPreview(
+              colorIndex: colorIndex,
+              product: widget.product,
+            ),
 
-          /// ColorPicker
-          ColorPicker(
-            colorIndex: colorIndex,
-            colorList: widget.product.productColorList.map((e) {
-              return e.color;
-            }).toList(),
-            onColorSelected: onColorIndexChanged,
-          ),
+            /// ColorPicker
+            ColorPicker(
+              colorIndex: colorIndex,
+              colorList: widget.product.productColorList.map((e) {
+                return e.color;
+              }).toList(),
+              onColorSelected: onColorIndexChanged,
+            ),
 
-          /// ProductDesc
-          ProductDesc(product: widget.product),
-        ],
+            /// ProductDesc
+            ProductDesc(product: widget.product),
+          ],
+        ),
       ),
     );
   }
