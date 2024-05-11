@@ -1,42 +1,36 @@
-import 'package:flutter/material.dart';
-import 'package:house_of_tomorrow/src/service/theme_service.dart';
+import 'product.dart';
 
-class CounterBadge extends StatelessWidget {
-  const CounterBadge({
-    super.key,
-    required this.child,
-    required this.label,
-    required this.isShow,
+class CartItem {
+  /// 선택한 상품
+  final Product product;
+
+  /// 선택한 색상
+  final int colorIndex;
+
+  /// 선택한 수량
+  final int count;
+
+  /// 상품 선택 여부
+  final bool isSelected;
+
+  const CartItem({
+    required this.product,
+    required this.colorIndex,
+    required this.count,
+    required this.isSelected,
   });
 
-  final Widget child;
-  final String label;
-  final bool isShow;
-
-  @override
-  Widget build(BuildContext context) {
-    return Stack(
-      alignment: Alignment.center,
-      children: [
-        /// Child Widget
-        child,
-
-        /// Badge
-        Positioned(
-          top: 10,
-          right: 6,
-          child: CircleAvatar(
-            backgroundColor: context.color.secondary,
-            radius: isShow ? 10 : 0,
-            child: Text(
-              label,
-              style: context.typo.body2.copyWith(
-                color: context.color.onSecondary,
-              ),
-            ),
-          ),
-        ),
-      ],
+  CartItem copyWith({
+    Product? product,
+    int? colorIndex,
+    int? count,
+    bool? isSelected,
+  }) {
+    return CartItem(
+      product: product ?? this.product,
+      colorIndex: colorIndex ?? this.colorIndex,
+      count: count ?? this.count,
+      isSelected: isSelected ?? this.isSelected,
     );
   }
 }
