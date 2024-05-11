@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:house_of_tomorrow/src/model/product.dart';
@@ -35,11 +36,15 @@ class ProductCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             if (product.productColorList.isNotEmpty)
-              ClipRRect(
-                borderRadius: BorderRadiusDirectional.circular(16),
-                child: Image.network(
-                  product.productColorList.first.iamgeUrl,
-                  fit: BoxFit.cover,
+              AspectRatio(
+                aspectRatio: 1 / 1,
+                child: ClipRRect(
+                  borderRadius: BorderRadiusDirectional.circular(16),
+                  child: CachedNetworkImage(
+                    imageUrl: product.productColorList.first.iamgeUrl,
+                    width: double.infinity,
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
             const SizedBox(height: 4),
