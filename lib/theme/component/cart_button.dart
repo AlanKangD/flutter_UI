@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:house_of_tomorrow/theme/component/button/button.dart';
+import 'package:house_of_tomorrow/theme/component/counter_badge.dart';
 import 'package:house_of_tomorrow/util/route_path.dart';
 
 class CartButton extends StatelessWidget {
@@ -7,12 +8,16 @@ class CartButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Button(
-      icon: 'basket',
-      type: ButtonType.flat,
-      onPressed: () {
-        Navigator.pushNamed(context, RoutePath.cart);
-      },
+    return CounterBadge(
+      isShow: false,
+      label: '0',
+      child: Button(
+        icon: 'basket',
+        type: ButtonType.flat,
+        onPressed: () {
+          Navigator.pushNamed(context, RoutePath.cart);
+        },
+      ),
     );
   }
-} 
+}
