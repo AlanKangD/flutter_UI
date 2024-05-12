@@ -29,7 +29,14 @@ class CartView extends StatelessWidget {
                 cartItem.copyWith(isSelected: !cartItem.isSelected),
               );
             },
-            onCountChanged: (count) {},
+            onCountChanged: (count) {
+              cartService.update(
+                index,
+                cartItem.copyWith(
+                  count: count,
+                ),
+              );
+            },
           );
         },
       ),
