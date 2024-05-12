@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:house_of_tomorrow/src/service/cart_service.dart';
 import 'package:house_of_tomorrow/src/service/theme_service.dart';
 import 'package:house_of_tomorrow/src/view/cart/widget/cart_botton_sheet.dart';
+import 'package:house_of_tomorrow/src/view/cart/widget/cart_checkout_dialog.dart';
 import 'package:house_of_tomorrow/src/view/cart/widget/cart_delete_dialog.dart';
 import 'package:house_of_tomorrow/src/view/cart/widget/cart_empty.dart';
 import 'package:house_of_tomorrow/src/view/cart/widget/cart_item_tile.dart';
@@ -88,7 +89,21 @@ class CartView extends StatelessWidget {
                       return prev + curr.count * curr.product.price;
                     })),
             selectedCartItemList: cartService.selectedCartItemList,
-            onCheckoutPressed: () {},
+            onCheckoutPressed: () {
+              /// show checkout dialog
+              showDialog(
+                context: context,
+                builder: (context) {
+                  return CartCheckoutDialog(
+                    onCheckoutPressed: () {
+                      // 상품 결제 로직이 있어야하지만 현재 상품 결제가 로직을 생성하지 않아서
+                      // 상품 삭제처리로 결제 되었다는 효과를 줌
+                      cartService.delete(cartService.selectedCartItemList);
+                    },
+                  );
+                },
+              );
+            },
           ),
         ],
       ),
