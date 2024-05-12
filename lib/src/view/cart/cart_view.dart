@@ -23,7 +23,12 @@ class CartView extends StatelessWidget {
           final cartItem = cartService.cartItemList[index];
           return CartItemTile(
             cartItem: cartItem,
-            onPressed: () {},
+            onPressed: () {
+              cartService.update(
+                index,
+                cartItem.copyWith(isSelected: !cartItem.isSelected),
+              );
+            },
             onCountChanged: (count) {},
           );
         },
