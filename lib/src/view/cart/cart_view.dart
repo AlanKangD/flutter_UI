@@ -30,7 +30,9 @@ class CartView extends StatelessWidget {
                 context: context,
                 builder: (context) {
                   return CartDeleteDialog(
-                    onDeletePressed: () {},
+                    onDeletePressed: () {
+                      cartService.delete(cartService.selectedCartItemList);
+                    },
                   );
                 },
               );
