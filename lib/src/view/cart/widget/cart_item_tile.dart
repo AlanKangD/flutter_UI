@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:house_of_tomorrow/src/model/cart_item.dart';
 
 class CartItemTile extends StatelessWidget {
@@ -15,6 +16,28 @@ class CartItemTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return const Row(
+      children: [
+        Stack(
+          children: [
+            /// Image
+            /// Check Icon
+          ],
+        ),
+        Expanded(
+          child: Column(
+            children: [
+              /// Name
+              Row(
+                children: [
+                  /// Price
+                  /// CounterButton
+                ],
+              )
+            ],
+          ),
+        )
+      ],
+    );
   }
 }
