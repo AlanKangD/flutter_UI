@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:house_of_tomorrow/src/model/cart_item.dart';
 import 'package:house_of_tomorrow/src/service/theme_service.dart';
+import 'package:house_of_tomorrow/theme/component/asset_icon.dart';
 
 class CartItemTile extends StatelessWidget {
   const CartItemTile({
@@ -38,6 +39,13 @@ class CartItemTile extends StatelessWidget {
             ),
 
             /// Check Icon
+            AssetIcon(
+              cartItem.isSelected ? 'check' : 'uncheck',
+              color: cartItem.isSelected
+                  ? context.color.primary
+                  : context.color.inactive,
+              size: 32,
+            )
           ],
         ),
         const Expanded(
