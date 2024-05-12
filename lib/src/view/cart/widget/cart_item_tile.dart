@@ -5,6 +5,8 @@ import 'package:flutter/widgets.dart';
 import 'package:house_of_tomorrow/src/model/cart_item.dart';
 import 'package:house_of_tomorrow/src/service/theme_service.dart';
 import 'package:house_of_tomorrow/theme/component/asset_icon.dart';
+import 'package:house_of_tomorrow/theme/component/counter_button.dart';
+import 'package:house_of_tomorrow/util/helper/intl_helper.dart';
 
 class CartItemTile extends StatelessWidget {
   const CartItemTile({
@@ -21,47 +23,80 @@ class CartItemTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final productColor = cartItem.product.productColorList[cartItem.colorIndex];
-    return Row(
-      children: [
-        Stack(
+    return GestureDetector(
+      behavior: HitTestBehavior.translucent,
+      onTap: onPressed,
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Row(
           children: [
-            /// Image
-            ClipRRect(
-              borderRadius: BorderRadius.circular(16),
-              child: CachedNetworkImage(
-                imageUrl: productColor.iamgeUrl,
-                width: 92,
-                height: 92,
-                fit: BoxFit.cover,
-                color: context.color.background,
-                colorBlendMode: BlendMode.darken,
-              ),
-            ),
+            Stack(
+              children: [
+                /// Image
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(16),
+                  child: CachedNetworkImage(
+                    imageUrl: productColor.iamgeUrl,
+                    width: 92,
+                    height: 92,
+                    fit: BoxFit.cover,
+                    color: context.color.background,
+                    colorBlendMode: BlendMode.darken,
+                  ),
+                ),
 
-            /// Check Icon
-            AssetIcon(
-              cartItem.isSelected ? 'check' : 'uncheck',
-              color: cartItem.isSelected
-                  ? context.color.primary
-                  : context.color.inactive,
-              size: 32,
+                /// Check Icon
+                AssetIcon(
+                  cartItem.isSelected ? 'check' : 'uncheck',
+                  color: cartItem.isSelected
+                      ? context.color.primary
+                      : context.color.inactive,
+                  size: 32,
+                )
+              ],
+            ),
+            const SizedBox(width: 12),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  /// Name
+                  Text(
+                    cartItem.product.name.toString(),
+                    style: context.typo.headline5,
+                  ),
+
+                  const SizedBox(height: 12),
+
+                  Row(
+                    children: [
+                      /// Price
+                      Text(
+                        IntlHelper.currency(
+                          symbol: cartItem.product.priceUnit,
+                          number: cartItem.product.price * cartItem.count,
+                        ),
+                        style: context.typo.subtitle1.copyWith(
+                          color: context.color.subtext,
+                        ),
+                      ),
+
+                      const Spacer(),
+
+                      /// CounterButton
+                      CounterButton(
+                        count: cartItem.count,
+                        onChanged: onCountChanged,
+                      ),
+                    ],
+                  )
+                ],
+              ),
             )
           ],
         ),
-        const Expanded(
-          child: Column(
-            children: [
-              /// Name
-              Row(
-                children: [
-                  /// Price
-                  /// CounterButton
-                ],
-              )
-            ],
-          ),
-        )
-      ],
+      ),
     );
   }
 }
