@@ -21,12 +21,11 @@ class CartView extends StatelessWidget {
         itemCount: cartService.cartItemList.length,
         itemBuilder: (context, index) {
           final cartItem = cartService.cartItemList[index];
-          CartItemTile(
+          return CartItemTile(
             cartItem: cartItem,
             onPressed: () {},
             onCountChanged: (count) {},
           );
-          return null;
         },
       ),
     );

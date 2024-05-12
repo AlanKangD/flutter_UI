@@ -1,6 +1,9 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:house_of_tomorrow/src/model/cart_item.dart';
+import 'package:house_of_tomorrow/src/service/theme_service.dart';
 
 class CartItemTile extends StatelessWidget {
   const CartItemTile({
@@ -16,15 +19,28 @@ class CartItemTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Row(
+    final productColor = cartItem.product.productColorList[cartItem.colorIndex];
+    return Row(
       children: [
         Stack(
           children: [
             /// Image
+            ClipRRect(
+              borderRadius: BorderRadius.circular(16),
+              child: CachedNetworkImage(
+                imageUrl: productColor.iamgeUrl,
+                width: 92,
+                height: 92,
+                fit: BoxFit.cover,
+                color: context.color.background,
+                colorBlendMode: BlendMode.darken,
+              ),
+            ),
+
             /// Check Icon
           ],
         ),
-        Expanded(
+        const Expanded(
           child: Column(
             children: [
               /// Name
