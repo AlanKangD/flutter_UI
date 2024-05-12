@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:house_of_tomorrow/src/service/cart_service.dart';
 import 'package:house_of_tomorrow/src/service/theme_service.dart';
 import 'package:house_of_tomorrow/src/view/cart/widget/cart_botton_sheet.dart';
+import 'package:house_of_tomorrow/src/view/cart/widget/cart_delete_dialog.dart';
 import 'package:house_of_tomorrow/src/view/cart/widget/cart_empty.dart';
 import 'package:house_of_tomorrow/src/view/cart/widget/cart_item_tile.dart';
 import 'package:house_of_tomorrow/theme/component/button/button.dart';
@@ -23,7 +24,17 @@ class CartView extends StatelessWidget {
         titleSpacing: 0,
         actions: [
           Button(
-            onPressed: () {},
+            onPressed: () {
+              /// Show delete dialog
+              showDialog(
+                context: context,
+                builder: (context) {
+                  return CartDeleteDialog(
+                    onDeletePressed: () {},
+                  );
+                },
+              );
+            },
             text: S.current.delete,
             type: ButtonType.flat,
             color: context.color.secondary,
