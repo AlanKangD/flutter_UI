@@ -10,7 +10,7 @@ class BaseView<T extends BaseViewModel> extends StatelessWidget {
   });
 
   final T viewModel;
-  final Widget Function() builder;
+  final Widget Function(BuildContext context, T viewModel) builder;
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +18,7 @@ class BaseView<T extends BaseViewModel> extends StatelessWidget {
       create: (context) => viewModel,
       child: Consumer<T>(
         builder: (context, value, child) {
-          return builder();
+          return builder(context, viewModel);
         },
       ),
     );
