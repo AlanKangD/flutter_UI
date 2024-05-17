@@ -6,14 +6,21 @@ class BaseView<T extends BaseViewModel> extends StatelessWidget {
   const BaseView({
     super.key,
     required this.viewModel,
+    required this.builder,
   });
 
   final T viewModel;
+  final Widget Function() builder;
 
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (context) => viewModel,
+      child: Consumer<T>(
+        builder: (context, value, child) {
+          return builder();
+        },
+      ),
     );
   }
 }
