@@ -1,8 +1,4 @@
-import 'dart:convert';
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
-import 'package:house_of_tomorrow/src/model/product.dart';
 import 'package:house_of_tomorrow/src/view/base_view.dart';
 import 'package:house_of_tomorrow/src/view/shopping/shopping_view_model.dart';
 import 'package:house_of_tomorrow/src/view/shopping/widget/product_card_grid.dart';
@@ -12,7 +8,6 @@ import 'package:house_of_tomorrow/theme/component/button/button.dart';
 import 'package:house_of_tomorrow/theme/component/cart_button.dart';
 import 'package:house_of_tomorrow/theme/component/hide_keyboard.dart';
 import 'package:house_of_tomorrow/theme/component/input_field.dart';
-import 'package:house_of_tomorrow/util/helper/network_helper.dart';
 import 'package:house_of_tomorrow/util/lang/generated/l10n.dart';
 
 class ShoppingView extends StatefulWidget {
@@ -23,19 +18,19 @@ class ShoppingView extends StatefulWidget {
 }
 
 class _ShoppingViewState extends State<ShoppingView> {
-  
+  final ShoppingViewModel shoppingViewModel = ShoppingViewModel();
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    // searchProductList();
+    shoppingViewModel.searchProductList();
   }
 
   @override
   Widget build(BuildContext context) {
     return BaseView(
-      viewModel: ShoppingViewModel(),
+      viewModel: shoppingViewModel,
       builder: (context, viewModel) => HideKeyboard(
         child: Scaffold(
             appBar: AppBar(
@@ -71,9 +66,9 @@ class _ShoppingViewState extends State<ShoppingView> {
                       // 검색
                       Expanded(
                         child: InputField(
-                          controller: textcontroller,
-                          onClear: searchProductList,
-                          onSubmitted: (text) => searchProductList(),
+                          controller: viewModel.textcontroller,
+                          onClear: viewModel.searchProductList,
+                          onSubmitted: (text) => viewModel.searchProductList(),
                           hint: S.current.searchProduct,
                         ),
                       ),
@@ -84,7 +79,7 @@ class _ShoppingViewState extends State<ShoppingView> {
                       //검색 버튼
                       Button(
                         icon: 'search',
-                        onPressed: searchProductList,
+                        onPressed: viewModel.searchProductList,
                       )
                     ],
                   ),
@@ -92,9 +87,9 @@ class _ShoppingViewState extends State<ShoppingView> {
 
                 // ProductCardList
                 Expanded(
-                  child: productList.isEmpty
+                  child: viewModel.productList.isEmpty
                       ? const ProductEmpty()
-                      : ProductCardGrid(productList),
+                      : ProductCardGrid(viewModel.productList),
                 ),
               ],
             )),
