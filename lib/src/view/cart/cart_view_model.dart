@@ -6,6 +6,7 @@ class CartViewModel extends BaseViewModel {
     required this.cartService,
   }) {
     cartService.addListener(notifyListeners);
+    
   }
 
   final CartService cartService;
