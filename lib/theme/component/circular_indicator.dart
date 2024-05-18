@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:house_of_tomorrow/src/service/theme_service.dart';
 
 class CircularIndicatior extends StatelessWidget {
   const CircularIndicatior({
@@ -12,6 +13,16 @@ class CircularIndicatior extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Stack(
+      children: [
+        child,
+
+        // CircurlarIndicator
+        Container(
+          color: context.color.background,
+          child: const CircularProgressIndicator(),
+        ),
+      ],
+    );
   }
 }
