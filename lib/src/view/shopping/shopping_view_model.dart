@@ -12,7 +12,8 @@ class ShoppingViewModel extends BaseViewModel {
   String get keyword => textcontroller.text.trim();
 
   Future<void> searchProductList() async {
+    isBusy = true;
     productList = await productRepository.searchProductList(keyword);
-    notifyListeners();
+    isBusy = false;
   }
 }
