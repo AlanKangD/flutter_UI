@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:house_of_tomorrow/src/view/base_view_model.dart';
+import 'package:house_of_tomorrow/theme/component/circular_indicator.dart';
 import 'package:provider/provider.dart';
 
 class BaseView<T extends BaseViewModel> extends StatelessWidget {
@@ -17,8 +18,11 @@ class BaseView<T extends BaseViewModel> extends StatelessWidget {
     return ChangeNotifierProvider(
       create: (context) => viewModel,
       child: Consumer<T>(
-        builder: (context, value, child) {
-          return builder(context, viewModel);
+        builder: (context, viewModel, child) {
+          return CircularIndicatior(
+            isBusy: viewModel.isBusy,
+            child: builder(context, viewModel),
+          );
         },
       ),
     );
