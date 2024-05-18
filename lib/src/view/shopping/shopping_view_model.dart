@@ -4,10 +4,14 @@ import 'package:house_of_tomorrow/src/repository/product_repository.dart';
 import 'package:house_of_tomorrow/src/view/base_view_model.dart';
 
 class ShoppingViewModel extends BaseViewModel {
+  ShoppingViewModel({
+    required this.productRepository,
+  });
+
   List<Product> productList = [];
 
-  TextEditingController textcontroller = TextEditingController();
-  final ProductRepository productRepository = ProductRepository();
+  TextEditingController textcontroller = TextEditingController(); 
+  final ProductRepository productRepository;
 
   String get keyword => textcontroller.text.trim();
 
