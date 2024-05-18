@@ -4,7 +4,9 @@ import 'package:house_of_tomorrow/src/view/base_view_model.dart';
 class CartViewModel extends BaseViewModel {
   CartViewModel({
     required this.cartService,
-  });
+  }) {
+    cartService.addListener(notifyListeners);
+  }
 
   final CartService cartService;
 }
