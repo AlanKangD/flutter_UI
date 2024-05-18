@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:house_of_tomorrow/src/service/theme_service.dart';
 
@@ -18,15 +19,18 @@ class CircularIndicatior extends StatelessWidget {
         child,
 
         // CircurlarIndicator
-        AnimatedOpacity(
-          duration: const Duration(milliseconds: 2222),
-          opacity: isBusy ? 1 : 0,
-          child: Container(
-            color: context.color.background,
-            alignment: Alignment.center,
-            child: CircularProgressIndicator(
-              color: context.color.primary,
-              value: isBusy ? null : 0,
+        IgnorePointer(
+          ignoring: !isBusy,
+          child: AnimatedOpacity(
+            duration: const Duration(milliseconds: 2222),
+            opacity: isBusy ? 1 : 0,
+            child: Container(
+              color: context.color.background,
+              alignment: Alignment.center,
+              child: CircularProgressIndicator(
+                color: context.color.primary,
+                value: isBusy ? null : 0,
+              ),
             ),
           ),
         ),
